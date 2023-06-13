@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+        <h1 style="margin-top: 3px;">DiscusIt Home Page</h1>
+        <ul>
+            {%for chat in chats%}
+                <div id="{{chat.uuid}}">
+                    <li><a>{{chat.name}}</a></li>
+                    {% if request.user in chat.members.all%}
+                        <button id="leave-{{chat.uuid}}" class="group_option" value="leave_group {{chat.uuid}}">
+                            Leave
+                        </button>
+                    {%else%}
+                        <button id="join-{{chat.uuid}}" class="group_option" value="join_group {{chat.uuid}}">
+                            Join
+                        </button>
+                    {%endif%}
+                    {% if request.user in chat.members.all%}
+                        <button id="open-{{chat.uuid}}" class="group_option" value="open_group {{chat.uuid}}">
+                            Open
+                        </button>
+                    {%endif%}
+                </div>
+            {%endfor%}
+        </ul>
+    {% endblock %}
+</body>
+{% block scripts %}
+
+{% endblock %}
+</html>

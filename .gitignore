@@ -1,0 +1,6 @@
+LearningMiddleware
+LearningForms
+env
+db.sqlite3
+__pycache__
+.env
